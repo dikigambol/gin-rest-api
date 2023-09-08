@@ -10,10 +10,13 @@ import (
 func init() {
 	initializers.LoadEnv()
 	initializers.ConnectDb()
+	initializers.SyncDb()
 }
 
 func main() {
 	r := gin.Default()
+
+	r.POST("/signup", controllers.Signup)
 
 	r.POST("/posts", controllers.PostCreate)
 	r.GET("/posts", controllers.PostIndex)
